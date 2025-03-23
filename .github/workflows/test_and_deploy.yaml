@@ -2,6 +2,10 @@ name: Deploy Project
 
 on:
   push:
+    branches:
+      - main
+    paths:
+      - "./02 Starting Project/**"
   workflow_dispatch:
 
 jobs:
