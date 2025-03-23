@@ -1,0 +1,39 @@
+name: Deploy Project
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "./02 Starting Project" # ✅ Set once for all steps
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          pwd
+          npm install
+      - name: Run tests
+        run: npm test # Or your actual test command
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "./02 Starting Project" # ✅ Set once for all steps
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          pwd
+          npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        run: echo "Deploying..."
