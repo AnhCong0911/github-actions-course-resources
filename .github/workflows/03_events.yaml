@@ -1,0 +1,33 @@
+name: Demo Event triggers
+
+on:
+  pull_request:
+    types:
+      - opened
+      - closed
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "./02 Starting Project" # ✅ Set once for all steps
+    steps:
+      - name: Output Event data
+        run: echo "${{ toJson(github.event) }}"
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pwd
+          npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        run: echo "Deploying..."
