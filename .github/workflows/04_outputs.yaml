@@ -40,7 +40,14 @@ jobs:
           pwd
           npm install
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
+          ls -la
+    #   - name: Upload artifact
+    #     uses: actions/upload-artifact@v4
+    #     with:
+    #       name: artifact-name
+    #       path: ./build
 
   deploy:
     needs: test
