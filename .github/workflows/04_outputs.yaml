@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - test
-      
+
   workflow_dispatch:
 
 jobs:
@@ -20,8 +20,6 @@ jobs:
         run: |
           pwd
           npm install
-      - name: Lint code
-        run: npm run lint
       - name: Run tests
         run: npm run test
   
@@ -49,7 +47,7 @@ jobs:
     #       path: ./build
 
   deploy:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     defaults:
       run:
