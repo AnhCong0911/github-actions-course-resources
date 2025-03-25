@@ -39,7 +39,7 @@ jobs:
       - name: Build
         run: |
           npm run build
-          ls -la
+      - run: ls -la
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
